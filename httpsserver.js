@@ -29,68 +29,72 @@ server.listen(3000, function () {
 
 app.get('/', function (req, res) {
     // res.sendFile(__dirname + '/index.html');
-    const urlobject = url.parse(req.url, true);
-    console.log(req.url);
-    const filename = "." + urlobject.pathname;
-    if (req.url === '/'){
-        fs.readFile("./index.html", function(err, html){
+    
+    // const urlobject = url.parse(req.url, true);
+    // console.log(req.url);
+    // const filename = "." + urlobject.pathname;
+    // if (req.url == '/'){
+    //     fs.readFile("./index.html", function(err, html){
             
-            if (err) {
-                fs.readFile('./404.html', function(err, html){
-                    res.writeHead(404, {"Content-Type":"text/html"});
-                    res.end(html);
-                })
+    //         if (err) {
+    //             fs.readFile('./404.html', function(err, html){
+    //                 res.writeHead(404, {"Content-Type":"text/html"});
+    //                 res.end(html);
+    //             })
                 
-            }
-            else {
-                res.writeHead(200, {"Content-Type":"text/html"});
-                res.end(html);
-            }
-        })
-        // res.sendFile(__dirname + '/index.html', function(err){
-        //     res.writeHead(200, {"Content-Type":"text/html"});
-        // //         res.end(html);
-        // })
-    }else if (req.url.match("\.css$")){
-        var cssPath = path.join(__dirname + req.url);
-        var fileStream = fs.createReadStream(cssPath, "utf-8");
-        res.writeHead(200, {'Content-Type':'text/html'});
-        fileStream.pipe(res);
-    }else if (req.url.match("\.png$")){
-        var pngPath = path.join(__dirname + req.url);
-        var fileStream = fs.createReadStream(pngPath);
-        res.writeHead(200, {'Content-Type':'image/png'});
-        fileStream.pipe(res);
-    }else if (req.url.match("\.jpg$")){
-        var jpgPath = path.join(__dirname + req.url)
-        var fileStream = fs.createReadStream(jpgPath);
-        res.writeHead(200, {'Content-Type':'image/jpg'});
-        fileStream.pipe(res);
-    }else if (req.url.match('\.html$')){
-        var filePath = __dirname + req.url;
-        fs.readFile(filePath, function(err, html){
-            if (err) {
-                fs.readFile('./404.html', function(err, html){
-                    res.writeHead(404, {"Content-Type":"text/html"});
-                    res.end(html);
-                })
+    //         }
+    //         else {
+    //             res.writeHead(200, {"Content-Type":"text/html"});
+    //             res.end(html);
+    //         }
+    //     })
+    //     // res.sendFile(__dirname + '/index.html', function(err){
+    //     //     res.writeHead(200, {"Content-Type":"text/html"});
+    //     // //         res.end(html);
+    //     // })
+    // }else if (req.url.match("\.css$")){
+    //     var cssPath = path.join(__dirname + req.url);
+    //     var fileStream = fs.createReadStream(cssPath, "utf-8");
+    //     res.writeHead(200, {'Content-Type':'text/html'});
+    //     fileStream.pipe(res);
+    // }else if (req.url.match("\.png$")){
+    //     var pngPath = path.join(__dirname + req.url);
+    //     var fileStream = fs.createReadStream(pngPath);
+    //     res.writeHead(200, {'Content-Type':'image/png'});
+    //     fileStream.pipe(res);
+    // }else if (req.url.match("\.jpg$")){
+    //     var jpgPath = path.join(__dirname + req.url)
+    //     var fileStream = fs.createReadStream(jpgPath);
+    //     res.writeHead(200, {'Content-Type':'image/jpg'});
+    //     fileStream.pipe(res);
+    // }else if (req.url.match('\.html$')){
+    //     var filePath = __dirname + req.url;
+    //     fs.readFile(filePath, function(err, html){
+    //         if (err) {
+    //             fs.readFile('./404.html', function(err, html){
+    //                 res.writeHead(404, {"Content-Type":"text/html"});
+    //                 res.end(html);
+    //             })
                 
-            }
-            else {
-                res.writeHead(200, {"Content-Type":"text/html"});
-                res.end(html);
-            }
-        })        
-    }else{
-        fs.readFile('./404.html', function(err, html){
-            res.writeHead(404, {"Content-Type":"text/html"});
-            res.end(html);
-        }) 
-    }
+    //         }
+    //         else {
+    //             res.writeHead(200, {"Content-Type":"text/html"});
+    //             res.end(html);
+    //         }
+    //     })        
+    // }else{
+    //     fs.readFile('./404.html', function(err, html){
+    //         res.writeHead(404, {"Content-Type":"text/html"});
+    //         res.end(html);
+    //     }) 
+    // }
 
     
 });
 
+app.get('*', function(req, res){
+    res.sendFile(__dirname + '/404.html');
+})
 var name = "Zeeshan Naseem";
 
 io.sockets.on('connection', function (socket) {
