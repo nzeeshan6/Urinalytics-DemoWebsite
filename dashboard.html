@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="shortcut icon" type="image/png" href="ico.png"> -->
+    <title>Health Report</title>
+</head>
+
+<body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <div class="name"></div>
+    <center>
+        <div class="name"></div>
+    </center>
+    <script>
+
+        var socket = io.connect();
+        socket.on('updateInfo', function (data) {
+            document.title = data.name + " -Health Report";
+            let x= document.getElementsByClassName("name");
+            x[0].innerHTML =  data.name;
+            x[1].innerHTML = data.name + "Second Entry";
+            
+        })
+
+    </script>
+</body>
+
+</html>
