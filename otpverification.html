@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP | Urinalytics</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link rel='stylesheet' href='css/otpverification.css'>
+</head>
+
+<body>
+    <section class='wrapper'>
+        <div class='container'>
+            <div class='col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3 text-center'>
+                <img src="image/Urinalytics_Logo_White_BG-ai.png" class="img-fluid" alt="logo">
+            </div>
+            <form class="rounded bg-white shadow p-5" action="/verify" method="post">
+                <h3 class="text-dark fw-bolder fs-4 mb-2>">Verify OTP</h3>
+
+                <div class="fw-normal text-muted mb-4">
+                    We've sent a verification code to {%email_id%}.
+                </div>
+
+                <div class="otp_input text-start mb-2">
+                    <label for="digit">Type your 6 digit security code</label>
+                    <div class="d-flex align-items-center justify-content-between mt-2">
+                        <input type="password" class="form-control" id='otp0' onkeyup="move(event, '','otp0', 'otp1')"
+                            name="OTP0" required="required" maxlength="1">
+                        <input type="password" class="form-control" id='otp1'
+                            onkeyup="move(event, 'otp0','otp1', 'otp2')" name="OTP1" required="required" maxlength="1">
+                        <input type="password" class="form-control" id='otp2'
+                            onkeyup="move(event, 'otp1', 'otp2','otp3')" name="OTP2" required="required" maxlength="1">
+                        <input type="password" class="form-control" id='otp3'
+                            onkeyup="move(event, 'otp2', 'otp3','otp4')" name="OTP3" required="required" maxlength="1">
+                        <input type="password" class="form-control" id='otp4'
+                            onkeyup="move(event, 'otp3', 'otp4','otp5')" name="OTP4" required="required" maxlength="1">
+                        <input type="password" class="form-control" id='otp5' onkeyup="move(event, 'otp4', 'otp5','')"
+                            name="OTP5" required="required" maxlength="1">
+                    </div>
+
+
+                </div>
+
+                <button type="submit" class="btn btn-primary submit_btn my-4">Verify & Proceed</button>
+                <div class='fw-normal text-muted-mb2'>
+                    Didn't get the Code ? <br><span class='text-primary fw-bold text-decoration-none'
+                        id="resend-timer"></span>
+                </div>
+            </form>
+        </div>
+    </section>
+    <script src="scripts/otpverification.js"></script>
+</body>
+
+</html>

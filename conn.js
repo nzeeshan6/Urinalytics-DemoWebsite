@@ -1,14 +1,14 @@
+const { json } = require('body-parser');
 var mysql = require('mysql');
-var conn = mysql.createConnection({
-    host:"localhost",
-    user:"root",
-    password:"Decosta@1234$juror$%"
+var conn = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    connectionLimit: 100,
+    multipleStatements: false
 });
 
-conn.connect(function(err){
-    if(err)
-        throw err;
-    console.log("Connection Success");
+module.exports = conn;
 
-});
+
 
